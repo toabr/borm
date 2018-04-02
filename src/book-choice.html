@@ -14,9 +14,9 @@
   }
 
   input[type=radio]{
-    height: 0;
+    /*height: 0;
     width: 0;
-    visibility: hidden;
+    visibility: hidden;*/
     position: relative;
     z-index: 88;
     top: 50px;
@@ -28,6 +28,7 @@
   label {
     cursor: pointer;
     position: absolute;
+    z-index: 1;
     top: 0;
     bottom: 0;
     margin: 0;
@@ -37,7 +38,7 @@
     color: #888;
     border: 1px solid #ddd;
     border-radius: 3px;
-    background: #efefef;
+    /*background: #efefef;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,24 +49,52 @@
     left: calc(50% - 18px);
     height: 36px;
     width: 36px;
-    color: #ddd;
+    /*color: #efefef;*/
+    overflow: hidden;
     background: white;
     border-radius: 36px;
+    /*box-shadow: 0 0 5px -1px var(--color-primary-0);*/
+    transform: rotateZ(45deg);
+    transition: transform 0.35s ease-in-out;
   }
 
-  label[for="left"] {
-    left: 0;
-  }
+  label[for="left"] { left: 0; }
+  label[for="left"]:after { right: 0; }
 
-  label[for="right"] {
-    right: 0;
+  label[for="right"] { right: 0; }
+  label[for="right"]:after { left: 0; }
+
+  label[for="left"]:after,
+  label[for="right"]:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    width: 0;
+    height: 100%;
+    background: lightsalmon;
+    transition: width 0.35s ease-in-out;
   }
 
   input#right:checked ~ label[for="right"],
   input#left:checked ~ label[for="left"] {
-    background: var(--color-primary-0);
+    /*background: var(--color-primary-0);*/
     color: white;
     font-weight: bold;
+  }
+
+  input#left:checked ~ label[for="clear"] {
+    transform: rotateZ(-90deg);
+  }
+
+  input#right:checked ~ label[for="clear"] {
+    transform: rotateZ(180deg);
+  }
+
+  input#left:checked ~ label[for="left"]:after,
+  input#right:checked ~ label[for="right"]:after {
+    background: var(--color-primary-0);
+    width: 100%;
   }
 
   </style>
