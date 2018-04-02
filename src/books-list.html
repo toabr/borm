@@ -1,0 +1,57 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="books-list-item.html">
+
+<dom-module id="books-list">
+  <template>
+
+    <style>
+      .grid {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        @apply --layout-justified;
+        margin: 0 10px 32px 10px;
+        padding: 0;
+        list-style: none;
+      }
+      .grid li {
+        -webkit-flex: 1 1;
+        flex: 1 1;
+        -webkit-flex-basis: 33%;
+        flex-basis: 33%;
+        max-width: 33%;
+      }
+      .grid a {
+        display:block;
+        text-decoration: none;
+      }
+      @media (max-width: 767px) {
+        .grid  li {
+          -webkit-flex-basis: 50%;
+          flex-basis: 50%;
+          max-width: 50%;
+        }
+      }
+
+    </style>
+
+    <ul class="grid">
+      <dom-repeat items="[[items]]" as="book" initial-count="4">
+        <template>
+          <li>
+            <books-list-item item="[[book]]"></books-list-item>
+          </li>
+        </template>
+      </dom-repeat>
+    </ul>
+
+  </template>
+
+  <script>
+    class BooksList extends Polymer.Element {
+      static get is() { return 'books-list' }
+    }
+    customElements.define(BooksList.is, BooksList);
+  </script>
+
+</dom-module>

@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="books-list.html">
+<link rel="import" href="books-data.html">
+
+<dom-module id="borm-demands">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <books-data books="{{books}}"></books-data>
+
+    <h1>Demands</h1>
+    <books-list items="[[books]]"></books-list>
+
+
+  </template>
+
+  <script>
+    class BormDemands extends Polymer.Element {
+      static get is() { return 'borm-demands'; }
+    }
+    window.customElements.define(BormDemands.is, BormDemands);
+  </script>
+</dom-module>

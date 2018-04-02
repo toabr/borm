@@ -1,0 +1,113 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="book-toggle">
+
+  <template>
+
+  <style>
+  :host {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+
+  input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: relative;
+    z-index: 88;
+  }
+
+  .toggle-group {
+    position: absolute;
+    width: 200%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transition: left 0.35s;
+    -webkit-transition: left 0.35s;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+  }
+
+  input:checked + .toggle-group {
+    left: -100%;
+  }
+
+  label {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .toggle-off {
+    background: #efefef;
+    color: #888;
+    left: 0;
+    right: 50%;
+  }
+
+  .toggle-on {
+    background: var(--color-primary-0);
+    color: white;
+    font-weight: bold;
+    left: 50%;
+    right: 0;
+  }
+
+  .toggle-handle {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 18px);
+    height: 100%;
+    width: 18px;
+  }
+
+  input:checked + .toggle-group .toggle-handle {
+    left: calc(50% + 18px);
+    transform: translateX(-100%);
+  }
+
+  </style>
+
+  <input type="checkbox" id="switch" />
+  <div class="toggle-group">
+    <label for="switch" class="toggle-off">[[labelOff]]</label>
+    <label for="switch" class="toggle-on"><iron-icon icon="icons:check"></iron-icon>[[labelOn]]</label>
+    <span class="toggle-handle"></span>
+  </div>
+  <!-- <label for="switch" style="z-index: 88;">[[labelOn]]</label> -->
+
+  </template>
+
+  <script>
+    class BookToggle extends Polymer.Element {
+      static get is() { return 'book-toggle'; }
+
+      static get properties() { return {
+          labelOn: {
+            type: String,
+            value: 'On'
+          },
+          labelOff: {
+            type: String,
+            value: 'Off'
+          }
+        };
+      }
+    }
+    customElements.define(BookToggle.is, BookToggle);
+  </script>
+
+</dom-module>
