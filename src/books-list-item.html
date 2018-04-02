@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 
 <link rel="import" href="book-toggle.html">
+<link rel="import" href="book-choice.html">
 
 <dom-module id="books-list-item">
 
@@ -14,7 +15,14 @@
     text-align: center;
     padding: 8px;
   }
+  .wrapper:hover {
+    margin-top: 0;
+    margin-bottom: 3px;
+    box-shadow: 0 3px 8px -3px gray;
+  }
   .wrapper {
+    margin-top: 3px;
+    margin-bottom: 0;
     border: 1px solid #fff;
     background-image: linear-gradient(to top,#fafafa 0,#fdfdfd 20%,#fff 60%);
     box-shadow: 0 0 8px -3px gray;
@@ -76,11 +84,6 @@
     color: lightgray;
     font-size: 14px;
   }
-  book-toggle {
-    display: inline-flex;
-    width: calc(50% - 4px);
-    height: 35px;
-  }
   footer {
     border-top: 2px solid var(--color-primary-0);
     margin: 8px;
@@ -119,9 +122,7 @@
         </div>
       </div>
       <footer>
-        <div class="field-toggle">
-          <book-toggle label-on="anbieten" label-off="anbieten"></book-toggle>
-          <book-toggle label-on="nachfragen" label-off="nachfragen"></book-toggle>
+        <book-choice></book-choice>
       </footer>
     </div>
 

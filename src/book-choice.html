@@ -1,0 +1,113 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="book-choice">
+
+  <template>
+
+  <style>
+  :host {
+    position: relative;
+    /*overflow: hidden;*/
+    display: block;
+  }
+
+  input[type=radio]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: relative;
+    z-index: 88;
+    top: 50px;
+  }
+
+  .radio-group {
+  }
+
+  label {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    border: 0;
+    height: 30px;
+    width: 50%;
+    color: #888;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #efefef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  label[for="clear"] {
+    top: -3px;
+    left: calc(50% - 18px);
+    height: 36px;
+    width: 36px;
+    color: #ddd;
+    background: white;
+    border-radius: 36px;
+  }
+
+  label[for="left"] {
+    left: 0;
+  }
+
+  label[for="right"] {
+    right: 0;
+  }
+
+  input#right:checked ~ label[for="right"],
+  input#left:checked ~ label[for="left"] {
+    background: var(--color-primary-0);
+    color: white;
+    font-weight: bold;
+  }
+
+  </style>
+
+  <div class="radio-group">
+    <input type="radio" name="choice" id="left" value="offer" />
+    <input type="radio" name="choice" id="clear" value="none" checked />
+    <input type="radio" name="choice" id="right" value="demand" />
+
+    <label for="left">offer</label>
+    <label for="right">demand</label>
+    <label for="clear"><iron-icon icon="icons:clear"></iron-icon></label>
+  </div>
+
+
+  <!-- <input type="checkbox" id="switch" />
+  <div class="toggle-group">
+    <label for="switch" class="toggle-off">[[labelOff]]</label>
+    <label for="switch" class="toggle-on"><iron-icon icon="icons:check"></iron-icon>[[labelOn]]</label>
+    <span class="toggle-handle"></span>
+  </div> -->
+  <!-- <label for="switch" style="z-index: 88;">[[labelOn]]</label> -->
+
+  </template>
+
+  <script>
+    class BookChoice extends Polymer.Element {
+      static get is() { return 'book-choice'; }
+
+      static get properties() { return {
+          labelOn: {
+            type: String,
+            value: 'On'
+          },
+          labelOff: {
+            type: String,
+            value: 'Off'
+          }
+        };
+      }
+    }
+    customElements.define(BookChoice.is, BookChoice);
+  </script>
+
+</dom-module>
